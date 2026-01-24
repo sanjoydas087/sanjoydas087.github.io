@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Data Analyst Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .skill-bar {
+            background: var(--bg-light);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            background: var(--primary);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--bg-light);
+        }
+
+        .experience-item h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-light);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .contact-cta {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .email-button {
+            display: block;
+            text-align: center;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .email-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 2% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 10px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: var(--white);
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .modal-header h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .project-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            position: relative;
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: translate(-50%, -50%) scale(0.5); }
+            to { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: var(--white);
+            font-size: 45px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            background: rgba(0,0,0,0.5);
+            border-radius: 5px;
+            user-select: none;
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            background: rgba(0,0,0,0.7);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            color: var(--white);
+            background: rgba(0,0,0,0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        .project-detail-section {
+            margin: 2rem 0;
+        }
+
+        .project-detail-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-detail-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-detail-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .project-detail-section li:before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .project-link:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline {
+                padding-left: 2rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Sanjoy Das</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Sanjoy Das</h1>
+            <p>Aspiring Data Analyst | Turning Data into Insights</p>
+            <a href="#contact" class="btn">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <img src="D:\Passport.jpg" alt="Profile" class="profile-img">
+            <div class="about-text">
+                <h3>Data Analyst & Problem Solver</h3>
+                <p>I'm a passionate data analyst with expertise in transforming complex data into actionable insights. With a strong foundation in SQL, Python, and data visualization tools, I help organizations make data-driven decisions.</p>
+                <p>My journey in data analytics started with a curiosity about patterns and trends. Today, I specialize in creating compelling dashboards, performing statistical analysis, and building predictive models that drive business value.</p>
+                <p><strong>Location:</strong> Jhargram, Kharagpur, West Bengal, India</p>
+                <p><strong>Education:</strong> BE in Electrical from JadavpurUniversity</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background: var(--bg-light);">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Programming Languages</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>SQL</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>R</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>Data Visualization</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Tableau</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Power BI</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Excel</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>Tools & Technologies</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Pandas & NumPy</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Git & GitHub</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Jupyter Notebook</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-timeline">
+            
+
+            <div class="experience-item">
+                <h3>Data Analytics Intern - InlignX Global Pvt Ltd.</h3>
+                <p class="date">Nov 2025 - Present</p>
+                <p>• Conducted exploratory data analysis on customer datasets</p>
+                <p>• Created visualizations and reports for stakeholder presentations</p>
+                <p>• Learned SQL, Python, and data visualization best practices</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" style="background: var(--bg-light);">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openProjectModal(0)">
+                <div class="project-img">📊</div>
+                <div class="project-content">
+                    <h3>Bank Customer Analytics Dashboard</h3>
+                    <p>Built an interactive Power Bi dashboard analyzing 4K+ sales records to identify revenue trends and top-performing products.</p>
+                    <div class="project-tags">
+                        <span class="tag">Power Bi</span>
+                        <span class="tag">DAX</span>
+                        <span class="tag">Excel</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--primary); font-weight: 600; cursor: pointer;">Click to view details →</p>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal(1)">
+                <div class="project-img">🐍</div>
+                <div class="project-content">
+                    <h3>End to End Sales & Profit Performance Dashboard </h3>
+                    <p>Used Power BI</p>
+                    <div class="project-tags">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">DAX</span>
+                        <span class="tag">Data Modelling</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--primary); font-weight: 600; cursor: pointer;">Click to view details →</p>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal(2)">
+                <div class="project-img">💾</div>
+                <div class="project-content">
+                    <h3>SQL Data Analysis</h3>
+                    <p>Analyzed e-commerce database with complex SQL queries to identify seasonal trends and customer retention rates.</p>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Data Analysis</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--primary); font-weight: 600; cursor: pointer;">Click to view details →</p>
+                </div>
+            </div>
+
+           
+
+          
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProjectModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox for Full Image View -->
+    <div id="imageLightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-counter" id="lightboxCounter"></span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">❮</span>
+        <span class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">❯</span>
+        <img class="lightbox-content" id="lightboxImage">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>sanjoydas087@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+91 XXX XXX XXXX</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Kharagpur, Jhargram, West Bengal, India</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <p>www.linkedin.com/in/dataanalyticssanjoy</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-cta">
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Ready to Connect?</h3>
+                <p style="margin-bottom: 2rem; color: var(--text-light); line-height: 1.8;">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!
+                </p>
+                
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <a href="mailto:sanjoydas087@gmail.com?subject=Portfolio Inquiry&body=Hi, I came across your portfolio and would like to discuss..." 
+                       class="email-button">
+                        📧 Send Me an Email
+                    </a>
+                    
+                    <a href="https://linkedin.com/in/dataanalyticssanjoy" 
+                       target="_blank" 
+                       class="email-button" 
+                       style="background: #0077b5;">
+                        💼 Connect on LinkedIn
+                    </a>
+                    
+                    <a href="https://github.com/yourusername" 
+                       target="_blank" 
+                       class="email-button" 
+                       style="background: #333;">
+                        💻 View GitHub Profile
+                    </a>
+                    
+                    <a href="tel:+91XXXXXXXXXX" 
+                       class="email-button" 
+                       style="background: #25D366;">
+                        📱 Call Me
+                    </a>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #f0f9ff; border-radius: 8px; border-left: 4px solid var(--primary);">
+                    <p style="margin: 0; color: var(--text-dark);">
+                        <strong>💡 Quick Response:</strong> I typically respond to emails within 24 hours. For urgent inquiries, feel free to call me directly!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/yourusername" target="_blank">💻 GitHub</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">💼 LinkedIn</a>
+            <a href="mailto:your.email@example.com">📧 Email</a>
+        </div>
+        <p>&copy; 2026 Sanjoy Das. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Project data - ADD YOUR PROJECTS HERE!
+        const projects = [
+            {
+                title: "Bank Customer Analytics Dashboard",
+                category: "Data Analytics | Business Intelligence | Banking Analytics",
+                tools: ["Power Bi", "DAX", "Power Query" , "Data Modelling" ,],
+                images: [
+                    "D:\j.png",
+                    "https://via.placeholder.com/800x500/764ba2/ffffff?text=Dashboard+View+2",
+                    "https://via.placeholder.com/800x500/667eea/ffffff?text=Dashboard+View+3"
+                ],
+                description: "Banks manage large volumes of customer data, but decision-makers often lack a clear view of customer growth trends and demographic patterns",
+                problem: " Northern Irelandales performance across different regions, products, and time periods to make data-driven decisions.",
+                approach: [
+                    "4,000+ active customers with total balance of 160M+",
+                    "Most customers are ages 25–45",
+                    "Majority are low to mid-range balance holders",
+                    "Regional distribution shows England > Scotland > Wales > Northern Ireland",
+                    
+                ],
+                results: [
+                    "Dashboard supports quicker data-driven decisions",
+                    "Helps identify high-value customers & regional focus areas",
+                    
+                ],
+                challenges: "Handling missing data and ensuring data accuracy across different sources",
+                learnings: "Learned advanced Power Bi calculations and the importance of dashboard design",
+                githubLink: "https://github.com/yourusername/sales-dashboard",
+                liveLink: "https://public.tableau.com/yourprofile"
+            },
+{
+                title: "End-to-End Sales & Profit Performance Dashboard",
+                category: "Business Intelligence | Sales Analytics | Executive Dashboard",
+                tools: ["Power BI", "DAX", "Power Query" , "Data Modelling"],
+                images: [
+                    "D:\a.png",
+                    "D:\de.png",
+                    "D:\er.png",
+                    "D:\c.png",
+
+                ],
+                description: "Business stakeholders lacked a centralized view of sales, profit, operating cost, customer segments, and geographic performance. Decision-making was slow due to scattered reports, limited historical analysis, and no clear visibility into profitability drivers across categories, segments, and regions.",
+                problem: "HR department lacked centralized view of employee data including turnover, performance, and department analytics.",
+                approach: [
+                    "Sales and profit show a consistent upward trend over time.",
+                    "Technology and Office Supplies contribute the highest profit.",
+                    "Corporate and Consumer segments generate maximum revenue",
+                    "Certain regions and customers generate high sales but lower margins, indicating cost optimization opportunities.",
+                    "Operating costs vary significantly across categories, directly impacting profitability"
+                ],
+                results: [
+                    "Enabled data-driven executive decisions through a single, interactive dashboard.",
+                    "Helped identify high-profit categories and underperforming regions for targeted action.",
+                    "Improved visibility into cost vs profit, supporting margin optimization.",
+                    "Reduced manual reporting effort and improved decision turnaround time."
+                ],
+                challenges: "Ensuring data privacy and implementing appropriate access controls",
+                learnings: "Advanced DAX calculations and importance of data security in Sales analytics",
+                githubLink: "https://github.com/yourusername/hr-dashboard",
+                liveLink: ""
+            },
+            
+            {
+                title: "Customer Segmentation",
+                category: "Machine Learning",
+                tools: ["Python", "Pandas", "Scikit-learn", "Matplotlib"],
+                images: [
+                    "https://via.placeholder.com/800x500/667eea/ffffff?text=Customer+Segments+Visualization",
+                    "https://via.placeholder.com/800x500/764ba2/ffffff?text=Cluster+Analysis"
+                ],
+                description: "Used K-means clustering algorithm to segment 25,000 customers into distinct groups based on purchasing behavior and demographics.",
+                problem: "Marketing team needed to understand different customer groups to create targeted campaigns and improve customer retention.",
+                approach: [
+                    "Collected and cleaned customer data including purchase history, demographics, and engagement metrics",
+                    "Performed exploratory data analysis to identify patterns",
+                    "Applied K-means clustering algorithm with 4 optimal clusters",
+                    "Analyzed each segment's characteristics and behavior",
+                    "Created visualizations to present findings to stakeholders"
+                ],
+                results: [
+                    "Identified 4 distinct customer segments: High-value, Regular, Occasional, One-time",
+                    "High-value segment (15% of customers) generated 62% of total revenue",
+                    "Enabled targeted email campaigns with 35% higher open rates",
+                    "Improved customer retention by 23% in targeted segments"
+                ],
+                challenges: "Determining optimal number of clusters and handling outliers in the dataset",
+                learnings: "Understanding the importance of feature scaling and the business interpretation of technical findings",
+                githubLink: "https://github.com/yourusername/customer-segmentation",
+                liveLink: ""
+            },
+            {
+                title: "SQL Data Analysis",
+                category: "Database Analysis",
+                tools: ["SQL", "MySQL", "PostgreSQL"],
+                images: [
+                    "https://via.placeholder.com/800x500/667eea/ffffff?text=SQL+Query+Results",
+                    "https://via.placeholder.com/800x500/764ba2/ffffff?text=Data+Analysis"
+                ],
+                description: "Comprehensive analysis of e-commerce database using complex SQL queries to extract business insights.",
+                problem: "Business needed insights on seasonal trends, customer retention, and product performance from large database.",
+                approach: [
+                    "Wrote complex SQL queries with JOINs, subqueries, and window functions",
+                    "Created views for frequently accessed data patterns",
+                    "Analyzed customer retention using cohort analysis",
+                    "Identified seasonal trends in product sales",
+                    "Optimized slow-running queries for better performance"
+                ],
+                results: [
+                    "Discovered 40% increase in sales during holiday season",
+                    "Identified top 10 products with highest repeat purchase rate",
+                    "Found customer retention rate of 65% after first purchase",
+                    "Reduced query execution time by 70% through optimization"
+                ],
+                challenges: "Working with large datasets and optimizing query performance",
+                learnings: "Advanced SQL techniques including CTEs, window functions, and query optimization",
+                githubLink: "https://github.com/yourusername/sql-analysis",
+                liveLink: ""
+            },
+            {
+                title: "Financial Forecasting Model",
+                category: "Predictive Analytics",
+                tools: ["Python", "Time Series", "Prophet", "Statsmodels"],
+                images: [
+                    "https://via.placeholder.com/800x500/667eea/ffffff?text=Forecast+Visualization",
+                    "https://via.placeholder.com/800x500/764ba2/ffffff?text=Model+Performance"
+                ],
+                description: "Built a time-series forecasting model to predict monthly revenue with high accuracy for budget planning.",
+                problem: "Finance team needed accurate revenue forecasts for next 6 months to make informed budget decisions.",
+                approach: [
+                    "Collected and cleaned 3 years of historical revenue data",
+                    "Performed time series decomposition to identify trends and seasonality",
+                    "Tested multiple models: ARIMA, Prophet, and LSTM",
+                    "Selected best performing model based on RMSE and MAE metrics",
+                    "Validated model on hold-out test set"
+                ],
+                results: [
+                    "Achieved 92% prediction accuracy on test data",
+                    "Successfully forecasted revenue for 6 months ahead",
+                    "Model incorporated seasonal patterns and trend components",
+                    "Helped finance team plan budget allocation with confidence"
+                ],
+                challenges: "Handling seasonality and sudden market changes in the data",
+                learnings: "Deep understanding of time series analysis and different forecasting techniques",
+                githubLink: "https://github.com/yourusername/revenue-forecast",
+                liveLink: ""
+            },
+            {
+                title: "Web Scraping & Analysis",
+                category: "Data Collection",
+                tools: ["Python", "BeautifulSoup", "Selenium", "Pandas"],
+                images: [
+                    "https://via.placeholder.com/800x500/667eea/ffffff?text=Scraped+Data+Visualization",
+                    "https://via.placeholder.com/800x500/764ba2/ffffff?text=Price+Analysis"
+                ],
+                description: "Built web scraper to collect product data from e-commerce websites and analyzed pricing trends for competitive intelligence.",
+                problem: "Business needed to track competitor pricing and product availability in real-time for pricing strategy.",
+                approach: [
+                    "Built Python web scraper using BeautifulSoup and Selenium",
+                    "Implemented ethical scraping with rate limiting and robots.txt compliance",
+                    "Stored data in structured format using Pandas DataFrames",
+                    "Performed price trend analysis over 3 months",
+                    "Created visualizations to identify pricing patterns"
+                ],
+                results: [
+                    "Collected data on 500+ products from 5 competitor websites",
+                    "Identified competitor pricing strategies and seasonal patterns",
+                    "Discovered opportunities for competitive pricing adjustments",
+                    "Automated daily data collection reducing manual work by 95%"
+                ],
+                challenges: "Handling dynamic websites and avoiding IP blocks during scraping",
+                learnings: "Web scraping best practices, handling dynamic content, and ethical data collection",
+                githubLink: "https://github.com/yourusername/web-scraper",
+                liveLink: ""
+            }
+        ];
+
+        // Lightbox variables
+        let currentLightboxImages = [];
+        let currentLightboxIndex = 0;
+        let currentProjectTitle = "";
+
+        // Open lightbox with image
+        function openLightbox(imageSrc, imageIndex, allImages, projectTitle) {
+            currentLightboxImages = allImages;
+            currentLightboxIndex = imageIndex;
+            currentProjectTitle = projectTitle;
+            
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('lightboxImage');
+            const caption = document.getElementById('lightboxCaption');
+            const counter = document.getElementById('lightboxCounter');
+            
+            lightbox.style.display = 'block';
+            lightboxImg.src = imageSrc;
+            caption.textContent = projectTitle;
+            counter.textContent = `${imageIndex + 1} / ${allImages.length}`;
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Change lightbox image (next/previous)
+        function changeLightboxImage(direction) {
+            currentLightboxIndex += direction;
+            
+            if (currentLightboxIndex >= currentLightboxImages.length) {
+                currentLightboxIndex = 0;
+            }
+            if (currentLightboxIndex < 0) {
+                currentLightboxIndex = currentLightboxImages.length - 1;
+            }
+            
+            const lightboxImg = document.getElementById('lightboxImage');
+            const counter = document.getElementById('lightboxCounter');
+            
+            lightboxImg.src = currentLightboxImages[currentLightboxIndex];
+            counter.textContent = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`;
+        }
+
+        // Open project modal
+        function openProjectModal(index) {
+            const project = projects[index];
+            const modal = document.getElementById('projectModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div class="modal-header">
+                    <h2>${project.title}</h2>
+                    <p>${project.category}</p>
+                </div>
+                <div class="modal-body">
+                    <div class="project-tags">
+                        ${project.tools.map(tool => `<span class="tag">${tool}</span>`).join('')}
+                    </div>
+                    
+                    <div class="project-images">
+                        ${project.images.map((img, idx) => 
+                            `<img src="${img}" 
+                                  alt="${project.title} - Image ${idx + 1}" 
+                                  class="project-image" 
+                                  onclick="openLightbox('${img}', ${idx}, ${JSON.stringify(project.images).replace(/"/g, '&quot;')}, '${project.title}')"
+                                  title="Click to view full size">`
+                        ).join('')}
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3>📋 Problem Statement</h3>
+                        <p>${project.description}</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3>🎯 Project Description</h3>
+                        <p>${project.problem}</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3>🔧 Key Insights</h3>
+                        <ul>
+                            ${project.approach.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3>✨ Results & Impact</h3>
+                        <ul>
+                            ${project.results.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3>🚧 Challenges</h3>
+                        <p>${project.challenges}</p>
+                    </div>
+                    
+                    <div class="project-detail-section">
+                        <h3>📚 Key Learnings</h3>
+                        <p>${project.learnings}</p>
+                    </div>
+                    
+                    <div class="project-links">
+                        ${project.githubLink ? `<a href="${project.githubLink}" target="_blank" class="project-link">💻 View Code on GitHub</a>` : ''}
+                        ${project.liveLink ? `<a href="${project.liveLink}" target="_blank" class="project-link">🔗 View Live Project</a>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close project modal
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            const lightbox = document.getElementById('imageLightbox');
+            if (event.target == modal) {
+                closeProjectModal();
+            }
+            if (event.target == lightbox) {
+                closeLightbox();
+            }
+        }
+
+        // Close modal/lightbox with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeProjectModal();
+                closeLightbox();
+            }
+            // Arrow keys for lightbox navigation
+            if (event.key === 'ArrowLeft') {
+                changeLightboxImage(-1);
+            }
+            if (event.key === 'ArrowRight') {
+                changeLightboxImage(1);
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
